@@ -114,7 +114,7 @@
       };
 
       try {
-        const response = await fetch('http://localhost:5000/orders', {
+        const response = await fetch('https://gadget-baba-backend.vercel.app/orders', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -149,7 +149,7 @@
     // Function to load and render data from API
     async function loadContentFromAPI() {
       try {
-        const apiUrl = 'http://localhost:5000/website-data';
+        const apiUrl = 'https://gadget-baba-backend.vercel.app/website-data';
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
