@@ -96,24 +96,68 @@
       document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
     }
 
-    function submitOrder(e) {
-      e.preventDefault();
-      const modal = document.getElementById("successModal");
-      modal.classList.remove("hidden");
-      const modalBox = modal.querySelector('.modal-enter');
-      modalBox.classList.add("modal-enter-active");
-      e.target.reset(); // Resets the form after submission
+    async function submitOrder(e) {
+      e.preventDefault(); // Prevent default form submission
+
+      const name = document.getElementById('name').value;
+      const address = document.getElementById('address').value;
+      const phone = document.getElementById('phone').value;
+      const productName = document.getElementById('order-product-name').innerText;
+      const productPrice = document.getElementById('order-product-price').innerText;
+
+      const orderData = {
+        name: name,
+        address: address,
+        phone: phone,
+        productName: productName,
+        productPrice: productPrice
+      };
+
+      try {
+        const response = await fetch('http://localhost:5000/orders', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(orderData)
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Order submission failed: ${response.status} - ${errorText}`);
+        }
+
+        const result = await response.json();
+        console.log('Order submitted successfully:', result);
+
+        const modal = document.getElementById("successModal");
+        modal.classList.remove("hidden");
+        const modalBox = modal.querySelector('.modal-enter');
+        modalBox.classList.add("modal-enter-active");
+        e.target.reset(); // Resets the form after successful submission
+
+      } catch (error) {
+        console.error('Error submitting order:', error);
+        alert('অর্ডার সাবমিট করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।'); // User-friendly error message
+      }
     }
 
     function closeModal() {
       document.getElementById("successModal").classList.add("hidden");
     }
 
-    // Function to load and render data from JSON
-    async function loadContent() {
+    // Function to load and render data from API
+    async function loadContentFromAPI() {
       try {
-        const response = await fetch('./data.json');
+        const apiUrl = 'http://localhost:5000/website-data';
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
+        console.log("Data fetched successfully:", data);
 
         // Header Section
         document.getElementById('header-logo').src = data.header.logo;
@@ -122,12 +166,11 @@
 
         // Features Section
         const featuresSection = document.getElementById('features-section');
-        featuresSection.innerHTML = ''; // Clear existing content
+        featuresSection.innerHTML = '';
         data.features.forEach(feature => {
-          // Determine image classes based on the image path or other criteria
-          let imgClasses = 'mt-4 rounded mx-auto w-full h-auto'; // Default responsive classes
-          if (feature.image.includes('product4.jpg')) {
-            // Specific classes for product4.jpg to maintain a certain height on larger screens
+          let imgClasses = 'mt-4 rounded mx-auto w-full h-auto';
+          // Check for specific image URLs from your provided data to apply object-cover
+          if (feature.image.includes('d276wa808zp0cg0dywqu.jpg') || feature.image.includes('npw5tvew9rlh2iyzpbvg.jpg')) {
             imgClasses = 'mt-4 rounded mx-auto w-full md:h-80 object-cover';
           }
 
@@ -151,7 +194,7 @@
 
         // Videos Section
         const videosContainer = document.getElementById('videos-container');
-        videosContainer.innerHTML = ''; // Clear existing content
+        videosContainer.innerHTML = '';
         data.videos.forEach(videoSrc => {
           const videoElement = `
             <video class="w-full h-auto rounded border-2 border-red-500" controls>
@@ -163,7 +206,7 @@
 
         // Preview Images Section
         const previewImagesContainer = document.getElementById('preview-images-container');
-        previewImagesContainer.innerHTML = ''; // Clear existing content
+        previewImagesContainer.innerHTML = '';
         data.previewImages.forEach(imageSrc => {
           const imageElement = `
             <img src="${imageSrc}" class="rounded-md border-2 border-red-500 w-full h-auto object-cover" alt="Preview" />
@@ -181,11 +224,7 @@
         contactCallButton.innerText = data.contact.callButtonText;
 
         const contactWhatsappButton = document.getElementById('contact-whatsapp-button');
-        // You'll need to replace 'YOUR_WHATSAPP_NUMBER' with the actual number,
-        // including the country code without any plus signs or leading zeros.
-        // Example: For +88017XXXXXXXX, use '88017XXXXXXXX'.
         contactWhatsappButton.href = `https://wa.me/${data.contact.helplineNumber.replace(/\D/g, '')}`;
-
 
         // Order Form Section
         document.getElementById('order-form-title').innerText = data.orderForm.title;
@@ -202,12 +241,13 @@
         footerAgencyLink.innerText = data.footer.agencyName;
 
       } catch (error) {
-        console.error('Error loading content:', error);
+        console.error('Error loading content from API:', error);
+        alert('ওয়েবসাইট লোড করতে সমস্যা হয়েছে। অনুগ্রহ করে ইন্টারনেট সংযোগ পরীক্ষা করুন।'); // Notify user if initial load fails
       }
     }
 
-    // Call loadContent when the DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', loadContent);
+    // Call loadContentFromAPI when the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', loadContentFromAPI);
   </script>
   
 </body>
