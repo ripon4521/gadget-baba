@@ -57,8 +57,10 @@
     <div class="mt-4 bg-yellow-100 inline-block p-4 rounded">
       <h4 id="contact-helpline" class="text-black font-bold">
         </h4>
-      <button id="contact-call-button" class="mt-2 bg-black text-white px-4 py-1 rounded">
-        </button>
+      <div class="flex justify-center space-x-2 mt-2">
+        <a id="contact-call-button" href="#" class="bg-black text-white px-4 py-1 rounded"></a>
+        <a id="contact-whatsapp-button" href="#" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded">WhatsApp</a>
+      </div>
     </div>
   </div>
 
@@ -134,7 +136,7 @@
               <h3 class="font-semibold mb-2 text-center bg-red-500 text-white px-2 py-2 rounded-md">
                 ${feature.heading}
               </h3>
-              <button onclick="scrollToForm()" class="my-4 bg-black text-white px-4 py-2 rounded w-full">${feature.ctaButtonText}</button>
+              <button onclick="scrollToForm()" class="my-4 bg-black text-white px-4 py-2 rounded w-full">অর্ডার করুন</button>
               <ul class="list-disc ml-6 space-y-1 text-sm">
                 ${feature.listItems.map(item => `<li>${item}</li>`).join('')}
               </ul>
@@ -173,11 +175,20 @@
         document.getElementById('contact-heading').innerText = data.contact.heading;
         document.getElementById('contact-description').innerText = data.contact.description;
         document.getElementById('contact-helpline').innerText = `হেল্পলাইন: ${data.contact.helplineNumber}`;
-        document.getElementById('contact-call-button').innerText = data.contact.callButtonText;
+
+        const contactCallButton = document.getElementById('contact-call-button');
+        contactCallButton.href = `tel:${data.contact.helplineNumber}`;
+        contactCallButton.innerText = data.contact.callButtonText;
+
+        const contactWhatsappButton = document.getElementById('contact-whatsapp-button');
+        // You'll need to replace 'YOUR_WHATSAPP_NUMBER' with the actual number,
+        // including the country code without any plus signs or leading zeros.
+        // Example: For +88017XXXXXXXX, use '88017XXXXXXXX'.
+        contactWhatsappButton.href = `https://wa.me/${data.contact.helplineNumber.replace(/\D/g, '')}`;
+
 
         // Order Form Section
         document.getElementById('order-form-title').innerText = data.orderForm.title;
-        // This line now correctly targets the new <p> element
         document.getElementById('order-form-offerTxt').innerText = data.orderForm.offerTxt;
         document.getElementById('order-product-name').innerText = data.orderForm.productName;
         document.getElementById('order-product-price').innerText = data.orderForm.price;
