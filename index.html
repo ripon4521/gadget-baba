@@ -3,134 +3,201 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gadget Baba  - Neckband Offer</title>
+  <title>Ramisha Telecom - Neckband Offer</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .modal-enter {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.3s ease-in-out;
+    }
+    .modal-enter-active {
+      opacity: 1;
+      transform: scale(1);
+    }
+  </style>
 </head>
 <body class="bg-gray-100 font-sans">
 
-<!-- Order Success Modal -->
-<div id="successModal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50">
-  <div class="bg-white p-6 rounded shadow-lg text-center max-w-sm">
-    <h2 class="text-2xl font-bold text-green-600">✅ অর্ডার সফল হয়েছে!</h2>
-    <p class="mt-2">আমাদের প্রতিনিধি খুব শীঘ্রই আপনার সাথে যোগাযোগ করবে।</p>
-    <button onclick="closeModal()" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">ঠিক আছে</button>
-  </div>
-</div>
-
-<!-- Header -->
-<div class="text-center mt-6 px-4">
-  <img src="./logo.jpg" alt="Logo" class="mx-auto h-32 w-32 rounded-md">
-  <h2 class="text-xl md:text-2xl font-extrabold mt-2 text-white drop-shadow-md border-2 border-red-600 px-5 py-5 rounded-md bg-red-500 max-w-xl mx-auto">একটানা ১২০ ঘন্টা চার্জ থাকবে নেকবেনটি তে এবং ৫ টি ভয়েস চেঞ্জ করে কথা বলতে পারবেন ও সাথে থাকছে সম্পূর্ণ ফ্রি ডেলিভারি 🔥</h2>
-  <button onclick="scrollToForm()" class="mt-4 bg-red-500 text-white py-2 px-6 rounded font-bold">অর্ডার করতে চাই</button>
-</div>
-
-<!-- Features -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto my-8 px-4">
-  <div class="border-2 border-red-600 rounded-md p-4">
-    <h3 class="font-semibold mb-2 text-center bg-red-500 font-sans px-2 py-2 rounded-md text-white">এক চার্জ এ চলবে টানা ১২০ ঘন্টা ও ৫ টি ভয়েস চেঞ্জ করে কথা বলতে পারবেন।</h3>
-    <button onclick="scrollToForm()" class="my-4 bg-black text-white px-4 py-1 rounded w-full">এখনই অর্ডার করুন</button>
-    <ul class="list-disc ml-6 space-y-1 text-sm">
-      <li>৫ টি ভয়েস চেঞ্জ করে কথা বলতে পারবেন।</li>
-      <li>১০০% অরিজিনাল ও কোয়ালিটিফুল প্রোডাক্ট।</li>
-      <li>টাইপ সি চার্জিং পোর্ট।</li>
-      <li>ব্লুটুথ ভারসন ৫.৩ এবং কনট্রল।</li>
-      <li>৬০০ এমএএইচ বিশাল ব্যাটারী।</li>
-      <li>ওয়াটার রেজিস্ট্যান্ট ও সুইটপ্রুফ।</li>
-      <li>ম্যাগনেটিক কন্ট্রোল সিস্টেম।</li>
-      <li>ইনকামিং কল ভাইব্রেশন।</li>
-      <li>সহজ অন/অফ অপশন।</li>
-    </ul>
-    <img src="./product 2.jpg" alt="Product" class="mt-4 mx-auto rounded">
+  <div id="successModal" class="fixed inset-0 hidden z-50 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-lg w-11/12 max-w-sm p-6 text-center transform transition-all duration-300 modal-enter">
+      <h2 class="text-2xl font-bold text-green-600">✅ অর্ডার সফল হয়েছে!</h2>
+      <p class="mt-2 text-gray-700">আমাদের প্রতিনিধি খুব শীঘ্রই আপনার সাথে যোগাযোগ করবে।</p>
+      <button onclick="closeModal()" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">OK</button>
+    </div>
   </div>
 
-  <div class="border-2 border-red-500 p-4 rounded-md">
-    <h3 class="font-semibold mb-2 text-center bg-red-500 px-2 py-2 rounded-md text-white">DON BT-300 সম্পর্কে কিছু কথা</h3>
-    <button onclick="scrollToForm()" class="my-4 bg-black text-white px-4 py-1 rounded w-full">এখনই অর্ডার করুন</button>
-    <ul class="list-disc ml-6 space-y-1 text-sm">
-      <li>একটানা ১২০ ঘণ্টা চার্জ থাকবে</li>
-      <li>৫ টি ভয়েস চেঞ্জ করে কথা বলা যাবে</li>
-      <li>দারুণ বেস ও মিউজিক কোয়ালিটি</li>
-      <li>মিউজিক কোয়ালিটি পরিবর্তনযোগ্য</li>
-      <li>৭ দিনের রিপ্লেসমেন্ট গ্যারান্টি</li>
-    </ul>
-    <img src="./product4.jpg" alt="Product" class="mt-4 mx-auto rounded h-80 object-cover">
+  <header class="text-center mt-6 px-4">
+    <img id="header-logo" src="" alt="Ramisha Telecom Logo" class="mx-auto h-32 w-32 object-contain rounded-md">
+    <h2 id="header-main-heading" class="text-xl md:text-2xl font-extrabold mt-2 text-white drop-shadow-md border-2 border-red-600 px-5 py-5 rounded-md bg-red-500 max-w-3xl mx-auto leading-relaxed">
+      </h2>
+    <button onclick="scrollToForm()" id="header-cta-button" class="mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded font-bold transition">
+      </button>
+  </header>
+
+  <section id="features-section" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto my-10 px-4">
+    </section>
+
+  <div class="text-center my-6 px-4">
+    <button id="price-notification-button" class="bg-red-600 text-white px-6 py-3 rounded text-lg font-bold">
+      </button>
   </div>
-</div>
 
-<!-- Price Notification -->
-<div class="text-center my-6 px-4">
-  <button class="bg-red-600 text-white px-6 py-3 rounded text-lg font-bold">⚠️ Regular price 1550 tk. 35% offer 949 tk. <br>সারা বাংলাদেশে ফ্রি ডেলিভারি</button>
-</div>
-
-<!-- Videos -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 max-w-6xl mx-auto">
-  <video class="w-full border-2 border-red-500 rounded" controls>
-    <source src="./video1.mp4" type="video/mp4">
-  </video>
-  <video class="w-full border-2 border-red-500 rounded" controls>
-    <source src="./video 2.mp4" type="video/mp4">
-  </video>
-</div>
-
-<!-- More Images -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto my-6 px-4">
-  <img src="./man3.jpg" alt="Preview" class="w-full border-2 border-red-500 rounded-md">
-  <img src="./product 3.jpg" alt="Preview" class="w-full border-2 border-red-500 rounded-md">
-  <img src="./man 1.jpg" alt="Preview" class="w-full border-2 border-red-500 rounded-md">
-</div>
-
-<!-- Contact -->
-<div class="text-center mt-10 px-4">
-  <h3 class="text-pink-600 text-2xl font-bold">আমাদের সাথে যুক্ত হোন</h3>
-  <p class="mb-2">ফ্রি ডেলিভারির সুবিধা নিতে নিচের নাম্বারে কল করুন</p>
-  <div class="mt-4 bg-yellow-100 p-4 inline-block rounded">
-    <h4 class="text-black font-bold">হেল্পের জন্য কল করুন +8801855844693</h4>
-    <button class="mt-2 bg-black text-white px-4 py-1 rounded">📞 01855844693</button>
-  </div>
-</div>
-
-<!-- Order Form -->
-<div id="orderForm" class="max-w-2xl mx-auto my-10 p-6 border rounded bg-white shadow">
-  <h2 class="text-center text-xl font-bold mb-4">অর্ডার করতে নিচের ফর্মটি পূরণ করুন</h2>
-  <form onsubmit="submitOrder(event)">
-    <label class="block mb-2 font-semibold">আপনার নাম:</label>
-    <input type="text" id="name" required class="w-full border px-3 py-2 mb-4 rounded" placeholder="আপনার নাম লিখুন">
-
-    <label class="block mb-2 font-semibold">আপনার ঠিকানা:</label>
-    <input type="text" id="address" required class="w-full border px-3 py-2 mb-4 rounded" placeholder="ঠিকানা লিখুন">
-
-    <label class="block mb-2 font-semibold">মোবাইল নাম্বার:</label>
-    <input type="text" id="phone" required class="w-full border px-3 py-2 mb-4 rounded" placeholder="মোবাইল নাম্বার লিখুন">
-
-    <div class="bg-gray-100 p-4 my-4">
-      <p class="mb-2">প্রোডাক্ট: <strong>DON BT - 300</strong></p>
-      <p>মূল্য: <strong>৳949</strong></p>
+  <div id="videos-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto px-4">
     </div>
 
-    <button type="submit" class="w-full bg-red-600 text-white py-2 font-bold rounded-md">Place Order ৳949.00</button>
-  </form>
-</div>
+  <div id="preview-images-container" class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto my-6 px-4">
+    </div>
 
-<!-- Footer -->
-<footer class="bg-black text-white text-center py-4 text-xs">
-  Copyright &copy; 2025 Gadget Baba Online | Built with ❤️ by <a href="https://notexagency.vercel.app/" class="text-green-500 font-semibold">Notex</a>
-</footer>
+  <div class="text-center mt-10 px-4">
+    <h3 id="contact-heading" class="text-pink-600 text-2xl font-bold">
+      </h3>
+    <p id="contact-description" class="text-gray-700 mt-2">
+      </p>
+    <div class="mt-4 bg-yellow-100 inline-block p-4 rounded">
+      <h4 id="contact-helpline" class="text-black font-bold">
+        </h4>
+      <button id="contact-call-button" class="mt-2 bg-black text-white px-4 py-1 rounded">
+        </button>
+    </div>
+  </div>
 
-<script>
-  function scrollToForm() {
-    document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
-  }
+  <div id="orderForm" class="max-w-2xl mx-auto my-10 p-6 border rounded bg-white shadow px-4">
+    <h2 id="order-form-title" class="text-center text-xl font-bold mb-4">
+      </h2>
+    <p id="order-form-offerTxt" class="text-center text-red-600 font-semibold mb-3">
+        </p>
+    <form onsubmit="submitOrder(event)">
+      <label for="name" class="block mb-2 font-semibold">আপনার নাম:</label>
+      <input type="text" id="name" required class="w-full border px-3 py-2 mb-4 rounded" placeholder="আপনার নাম লিখুন">
+      <label for="address" class="block mb-2 font-semibold">আপনার ঠিকানা:</label>
+      <input type="text" id="address" required class="w-full border px-3 py-2 mb-4 rounded" placeholder="ঠিকানা লিখুন">
+      <label for="phone" class="block mb-2 font-semibold">মোবাইল নাম্বার:</label>
+      <input type="text" id="phone" required class="w-full border px-3 py-2 mb-4 rounded" placeholder="মোবাইল নাম্বার লিখুন">
+      <div class="bg-gray-100 p-4 my-4 rounded-md">
+        <p class="mb-2">প্রোডাক্ট: <strong id="order-product-name"></strong></p>
+        <p>মূল্য: <strong id="order-product-price"></strong></p>
+      </div>
+      <button type="submit" id="order-place-button" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 font-bold rounded-md">
+        </button>
+    </form>
+  </div>
 
-  function submitOrder(event) {
-    event.preventDefault();
-    document.getElementById('successModal').classList.remove('hidden');
-    document.querySelector('form').reset();
-  }
+  <footer class="bg-black text-white text-center py-4 text-xs">
+    <span id="footer-copyright"></span>
+    <span id="footer-built-by"></span>
+    <a id="footer-agency-link" href="" class="text-green-500 font-semibold" target="_blank"></a>
+  </footer>
 
-  function closeModal() {
-    document.getElementById('successModal').classList.add('hidden');
-  }
-</script>
+  <script>
+    function scrollToForm() {
+      document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
+    }
 
+    function submitOrder(e) {
+      e.preventDefault();
+      const modal = document.getElementById("successModal");
+      modal.classList.remove("hidden");
+      const modalBox = modal.querySelector('.modal-enter');
+      modalBox.classList.add("modal-enter-active");
+      e.target.reset(); // Resets the form after submission
+    }
+
+    function closeModal() {
+      document.getElementById("successModal").classList.add("hidden");
+    }
+
+    // Function to load and render data from JSON
+    async function loadContent() {
+      try {
+        const response = await fetch('./data.json');
+        const data = await response.json();
+
+        // Header Section
+        document.getElementById('header-logo').src = data.header.logo;
+        document.getElementById('header-main-heading').innerText = data.header.mainHeading;
+        document.getElementById('header-cta-button').innerText = data.header.ctaButtonText;
+
+        // Features Section
+        const featuresSection = document.getElementById('features-section');
+        featuresSection.innerHTML = ''; // Clear existing content
+        data.features.forEach(feature => {
+          // Determine image classes based on the image path or other criteria
+          let imgClasses = 'mt-4 rounded mx-auto w-full h-auto'; // Default responsive classes
+          if (feature.image.includes('product4.jpg')) {
+            // Specific classes for product4.jpg to maintain a certain height on larger screens
+            imgClasses = 'mt-4 rounded mx-auto w-full md:h-80 object-cover';
+          }
+
+          const featureCard = `
+            <div class="border-2 border-red-600 rounded-md p-4 bg-white shadow">
+              <h3 class="font-semibold mb-2 text-center bg-red-500 text-white px-2 py-2 rounded-md">
+                ${feature.heading}
+              </h3>
+              <button onclick="scrollToForm()" class="my-4 bg-black text-white px-4 py-2 rounded w-full">${feature.ctaButtonText}</button>
+              <ul class="list-disc ml-6 space-y-1 text-sm">
+                ${feature.listItems.map(item => `<li>${item}</li>`).join('')}
+              </ul>
+              <img src="${feature.image}" alt="Product" class="${imgClasses}">
+            </div>
+          `;
+          featuresSection.insertAdjacentHTML('beforeend', featureCard);
+        });
+
+        // Price Notification
+        document.getElementById('price-notification-button').innerHTML = `${data.priceNotification.text}<br>${data.priceNotification.deliveryInfo}`;
+
+        // Videos Section
+        const videosContainer = document.getElementById('videos-container');
+        videosContainer.innerHTML = ''; // Clear existing content
+        data.videos.forEach(videoSrc => {
+          const videoElement = `
+            <video class="w-full h-auto rounded border-2 border-red-500" controls>
+              <source src="${videoSrc}" type="video/mp4" />
+            </video>
+          `;
+          videosContainer.insertAdjacentHTML('beforeend', videoElement);
+        });
+
+        // Preview Images Section
+        const previewImagesContainer = document.getElementById('preview-images-container');
+        previewImagesContainer.innerHTML = ''; // Clear existing content
+        data.previewImages.forEach(imageSrc => {
+          const imageElement = `
+            <img src="${imageSrc}" class="rounded-md border-2 border-red-500 w-full h-auto object-cover" alt="Preview" />
+          `;
+          previewImagesContainer.insertAdjacentHTML('beforeend', imageElement);
+        });
+
+        // Contact Us Section
+        document.getElementById('contact-heading').innerText = data.contact.heading;
+        document.getElementById('contact-description').innerText = data.contact.description;
+        document.getElementById('contact-helpline').innerText = `হেল্পলাইন: ${data.contact.helplineNumber}`;
+        document.getElementById('contact-call-button').innerText = data.contact.callButtonText;
+
+        // Order Form Section
+        document.getElementById('order-form-title').innerText = data.orderForm.title;
+        // This line now correctly targets the new <p> element
+        document.getElementById('order-form-offerTxt').innerText = data.orderForm.offerTxt;
+        document.getElementById('order-product-name').innerText = data.orderForm.productName;
+        document.getElementById('order-product-price').innerText = data.orderForm.price;
+        document.getElementById('order-place-button').innerText = data.orderForm.placeOrderButtonText;
+
+        // Footer Section
+        document.getElementById('footer-copyright').innerText = data.footer.copyright;
+        document.getElementById('footer-built-by').innerText = data.footer.builtByText;
+        const footerAgencyLink = document.getElementById('footer-agency-link');
+        footerAgencyLink.href = data.footer.agencyLink;
+        footerAgencyLink.innerText = data.footer.agencyName;
+
+      } catch (error) {
+        console.error('Error loading content:', error);
+      }
+    }
+
+    // Call loadContent when the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', loadContent);
+  </script>
+  
 </body>
 </html>
