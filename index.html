@@ -16,7 +16,23 @@
             transform: scale(1);
         }
     </style>
-</head>
+    
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '595705820286912'); // আপনার পিক্সেল আইডি
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=595705820286912&ev=PageView&noscript=1"
+    /></noscript>
+    </head>
 <body class="bg-gray-100 font-sans">
 
     <div id="loader" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
@@ -133,7 +149,16 @@
 
                 const result = await response.json();
                 console.log('Order submitted successfully:', result);
-
+                
+                // ✅ সফল অর্ডারের পর পিক্সেল ইভেন্ট ফায়ার করা হয়েছে
+                if (typeof fbq === 'function') {
+                    fbq('track', 'Purchase', {
+                        value: parseFloat(productPrice.replace(/[^\d.]/g, '')),
+                        currency: 'BDT',
+                        content_name: productName
+                    });
+                }
+                
                 const modal = document.getElementById("successModal");
                 const modalContent = modal.querySelector('.modal-enter');
 
@@ -244,7 +269,6 @@
             } catch (error) {
                 console.error('Error loading content from API:', error);
             } finally {
-                // ✅ লোড হয়ে গেলে স্পিনার লুকিয়ে ফেলা হয়েছে
                 document.getElementById('loader').style.display = 'none';
             }
         }
